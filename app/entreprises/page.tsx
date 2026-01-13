@@ -1,250 +1,392 @@
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import WhatsAppButton from "@/components/whatsapp-button"
-import { whatsappTemplates } from "@/lib/contact-data"
-import { Building2, Briefcase, ChefHat, Hammer, Users, CheckCircle2 } from "lucide-react"
-import Image from "next/image"
+import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/footer"
 import Link from "next/link"
+import Image from "next/image"
+import { MapPin, Check, Utensils, Hotel, Wrench, ShoppingBag, Scissors, Users } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import type { Metadata } from "next"
+import type React from "react"
 
-export const metadata = {
-  title: "Uniformes Brodés pour Entreprises | By Sandrine Couture",
+export const metadata: Metadata = {
+  title: "Broderie entreprise : uniformes brodés & patchs | Normandie",
   description:
-    "Uniformes professionnels brodés pour restaurants, hôtels, artisans, BTP. Devis sous 24h, facture, livraison suivie. Seine-Maritime, Normandie.",
+    "Uniformes brodés pour entreprises : polos, tabliers, sweats, casquettes, patch velcro. Devis WhatsApp rapide, facture, livraison Normandie & France. Robertot (76560).",
 }
 
 export default function EntreprisesPage() {
+  const sectors = [
+    { icon: Utensils, title: "Restaurants & métiers de bouche" },
+    { icon: Hotel, title: "Hôtels / accueil / entretien" },
+    { icon: Wrench, title: "Artisans, BTP, garages" },
+    { icon: ShoppingBag, title: "Boulangeries / traiteurs" },
+    { icon: Scissors, title: "Salons coiffure / esthétique" },
+    { icon: Users, title: "Événementiel / associations / clubs" },
+  ]
+
+  const products = [
+    "Polos brodés",
+    "T-shirts",
+    "Sweats / hoodies",
+    "Tabliers brodés",
+    "Casquettes / bonnets",
+    "Patchs brodés (cousus ou velcro)",
+  ]
+
+  const placements = [
+    { title: "Logo cœur", desc: "Le plus classique" },
+    { title: "Manche / nuque", desc: "Premium discret" },
+    { title: "Grand dos", desc: "Visibilité maximale" },
+  ]
+
+  const packs = [
+    {
+      name: "Starter",
+      ideal: "Petite équipe / artisan",
+      features: ["Série courte", "Logo cœur", "Rendu durable"],
+    },
+    {
+      name: "Team",
+      ideal: "PME / équipe complète",
+      features: ["Série moyenne", "Option manche/nuque", "Contrôle qualité"],
+    },
+    {
+      name: "Premium",
+      ideal: "Image haut de gamme",
+      features: ["Multi-articles (polos + casquettes + vestes)", "Patch velcro possible", "Accompagnement complet"],
+    },
+  ]
+
   return (
-    <main className="min-h-screen">
+    <>
       <Navbar />
+      <main className="pt-20">
+        {/* Hero Section */}
+        <section className="relative pt-16 pb-20 overflow-hidden">
+          <div className="absolute inset-0 -z-10">
+            <div
+              className="floating-bubble w-64 h-64 top-10 left-10 opacity-30"
+              style={{ "--duration": "20s", "--x": "80px", "--y": "-100px" } as React.CSSProperties}
+            />
+            <div
+              className="floating-bubble w-96 h-96 top-40 right-20 opacity-20"
+              style={{ "--duration": "25s", "--x": "-60px", "--y": "80px" } as React.CSSProperties}
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-rose-light/30 to-background -z-10" />
+          <div className="container mx-auto px-4">
+            <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+              <div className="text-center lg:text-left animate-fade-in-up">
+                <div className="inline-flex items-center gap-2 px-4 py-2 glass-panel rounded-full text-sm text-muted-foreground mb-6">
+                  <MapPin className="w-4 h-4 text-primary" />
+                  <span>Robertot (76560) • Normandie • Livraison France</span>
+                </div>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance leading-tight">
+                  Uniformes brodés pour entreprises
+                </h1>
+                <p className="text-xl md:text-2xl text-muted-foreground mb-4 text-pretty">
+                  Une image d&apos;équipe professionnelle, durable et cohérente.
+                </p>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8">
+                  Restaurants, hôtels, artisans, salons, clubs... Je personnalise vos tenues avec une broderie nette et
+                  résistante : logo, patch, prénom ou fonction.
+                </p>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-block px-4 py-2 bg-pink-100 text-[#e91e63] rounded-full text-sm font-semibold mb-6">
-                B2B Professionnel
+                <div className="flex flex-wrap justify-center lg:justify-start items-center gap-4 md:gap-6 mb-8 text-sm md:text-base">
+                  <div className="flex items-center gap-2">
+                    <Check className="w-5 h-5 text-primary" />
+                    <span className="text-foreground font-medium">Devis rapide</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="w-5 h-5 text-primary" />
+                    <span className="text-foreground font-medium">Travail soigné</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="w-5 h-5 text-primary" />
+                    <span className="text-foreground font-medium">Facture pro</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="w-5 h-5 text-primary" />
+                    <span className="text-foreground font-medium">Livraison</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 mb-4">
+                  <Link href="/devis">
+                    <Button
+                      size="lg"
+                      className="bg-[#25D366] hover:bg-[#1da851] text-white font-semibold px-8 shadow-lg btn-shine transition-all hover:scale-105"
+                    >
+                      Demander un devis entreprise
+                    </Button>
+                  </Link>
+                  <Link href="/realisations">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="border-primary text-primary hover:bg-primary hover:text-white bg-transparent transition-all hover:scale-105"
+                    >
+                      Voir les réalisations
+                    </Button>
+                  </Link>
+                </div>
+
+                <p className="text-sm text-muted-foreground text-center lg:text-left">
+                  Le formulaire génère un message WhatsApp complet (quantité, article, délai, livraison...).
+                </p>
               </div>
-              <h1 className="section-title text-balance">Équipez Vos Équipes avec des Uniformes Brodés Premium</h1>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Renforcez votre identité de marque avec des uniformes brodés de qualité professionnelle. Devis sous 24h,
-                facture, livraison suivie.
-              </p>
 
-              <div className="flex flex-wrap gap-4 mb-8">
-                <WhatsAppButton message={whatsappTemplates.entreprise}>Demander un Devis Pro</WhatsAppButton>
-                <Link href="/realisations" className="btn-secondary">
-                  Voir Réalisations
-                </Link>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="text-[#e91e63]" size={20} />
-                  <span className="text-sm font-medium">Devis 24h</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="text-[#e91e63]" size={20} />
-                  <span className="text-sm font-medium">Facture pro</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="text-[#e91e63]" size={20} />
-                  <span className="text-sm font-medium">Livraison suivie</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="text-[#e91e63]" size={20} />
-                  <span className="text-sm font-medium">Séries dès 10 pièces</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="glass-card p-2">
+              <div
+                className="relative h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl glass-card animate-fade-in-up"
+                style={{ animationDelay: "0.2s" }}
+              >
                 <Image
-                  src="/professional-embroidered-polo-shirts-with-company-.jpg"
-                  alt="Uniformes brodés professionnels"
-                  width={600}
-                  height={500}
-                  className="rounded-2xl w-full"
+                  src="/images/team-wearing-embroidered-uniforms-restaurant.jpg"
+                  alt="Équipe en uniformes brodés pour restaurant"
+                  fill
+                  className="object-cover"
+                  priority
                 />
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Secteurs */}
-      <section className="py-20 px-4 bg-gradient-to-b from-pink-50/50 to-white">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Secteurs Que Nous Servons</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Des solutions de broderie adaptées à votre industrie
+        {/* Sectors Section */}
+        <section className="py-20 bg-secondary/30 relative overflow-hidden">
+          <div className="absolute inset-0 -z-10">
+            <div
+              className="floating-bubble w-80 h-80 top-1/4 right-1/4 opacity-15"
+              style={{ "--duration": "22s", "--x": "-100px", "--y": "60px" } as React.CSSProperties}
+            />
+          </div>
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12 animate-fade-in-up">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Pour quels types d&apos;entreprises ?
+              </h2>
+              <p className="text-lg text-muted-foreground">Les demandes les plus fréquentes.</p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {sectors.map((sector, index) => (
+                <Card
+                  key={index}
+                  className="glass-card border-2 animate-fade-in-up"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <CardHeader>
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-2">
+                      <sector.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <CardTitle className="text-lg">{sector.title}</CardTitle>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+            <p
+              className="text-center text-sm text-muted-foreground mt-8 animate-fade-in-up"
+              style={{ animationDelay: "0.6s" }}
+            >
+              Vous n&apos;êtes pas dans la liste ? Aucun souci : on adapte.
             </p>
           </div>
+        </section>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Link href="/broderie-restaurant" className="glass-card p-6 group">
-              <div className="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#e91e63] transition-colors">
-                <ChefHat className="text-[#e91e63] group-hover:text-white transition-colors" size={28} />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-2">Restaurant & Hôtellerie</h3>
-              <p className="text-gray-600 mb-4">Polos, tabliers, toques de chef brodés. Identité visuelle soignée.</p>
-              <span className="text-[#e91e63] font-semibold group-hover:underline">En savoir plus →</span>
-            </Link>
-
-            <Link href="/broderie-artisans-btp" className="glass-card p-6 group">
-              <div className="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#e91e63] transition-colors">
-                <Hammer className="text-[#e91e63] group-hover:text-white transition-colors" size={28} />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-2">Artisans & BTP</h3>
-              <p className="text-gray-600 mb-4">Vêtements de travail brodés, logo entreprise, textile résistant.</p>
-              <span className="text-[#e91e63] font-semibold group-hover:underline">En savoir plus →</span>
-            </Link>
-
-            <Link href="/broderie-boulangerie" className="glass-card p-6 group">
-              <div className="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#e91e63] transition-colors">
-                <Building2 className="text-[#e91e63] group-hover:text-white transition-colors" size={28} />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-2">Boulangerie & Commerce</h3>
-              <p className="text-gray-600 mb-4">Tabliers, polos personnalisés pour équipes en contact client.</p>
-              <span className="text-[#e91e63] font-semibold group-hover:underline">En savoir plus →</span>
-            </Link>
-
-            <Link href="/broderie-hotel" className="glass-card p-6 group">
-              <div className="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#e91e63] transition-colors">
-                <Building2 className="text-[#e91e63] group-hover:text-white transition-colors" size={28} />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-2">Hôtels & Spas</h3>
-              <p className="text-gray-600 mb-4">Uniformes élégants pour réception, conciergerie, service étages.</p>
-              <span className="text-[#e91e63] font-semibold group-hover:underline">En savoir plus →</span>
-            </Link>
-
-            <Link href="/broderie-salon-coiffure-esthetique" className="glass-card p-6 group">
-              <div className="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#e91e63] transition-colors">
-                <Users className="text-[#e91e63] group-hover:text-white transition-colors" size={28} />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-2">Salons & Esthétique</h3>
-              <p className="text-gray-600 mb-4">Tuniques, tabliers stylés pour coiffeurs et esthéticiennes.</p>
-              <span className="text-[#e91e63] font-semibold group-hover:underline">En savoir plus →</span>
-            </Link>
-
-            <div className="glass-card p-6 bg-gradient-to-br from-pink-50 to-white">
-              <div className="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center mb-4">
-                <Briefcase className="text-[#e91e63]" size={28} />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-2">Clubs & Associations</h3>
-              <p className="text-gray-600 mb-4">Textile événementiel, merchandising, vêtements de sport brodés.</p>
-              <WhatsAppButton message={whatsappTemplates.entreprise} className="text-sm px-4 py-2">
-                Demander un devis
-              </WhatsAppButton>
+        {/* Products Section */}
+        <section className="py-20 relative overflow-hidden">
+          <div className="absolute inset-0 -z-10">
+            <div
+              className="floating-bubble w-72 h-72 bottom-20 left-10 opacity-20"
+              style={{ "--duration": "24s", "--x": "90px", "--y": "-70px" } as React.CSSProperties}
+            />
+          </div>
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12 animate-fade-in-up">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Produits personnalisés</h2>
+              <p className="text-lg text-muted-foreground">Tenues d&apos;équipe, accessoires et options.</p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
+              {products.map((product, index) => (
+                <div
+                  key={index}
+                  className="service-card-enhanced animate-fade-in-up text-center"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <p className="font-semibold text-foreground">{product}</p>
+                </div>
+              ))}
+            </div>
+            <div
+              className="max-w-3xl mx-auto glass-panel rounded-lg p-6 text-center animate-fade-in-up"
+              style={{ animationDelay: "0.6s" }}
+            >
+              <p className="text-sm text-foreground">
+                <span className="font-semibold">Note pro :</span> Je peux broder sur vos textiles ou vous proposer une
+                solution selon votre besoin.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Produits */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Nos Produits Phares</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">Techniques et textiles de qualité professionnelle</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <Link href="/patch-velcro-brode" className="glass-card p-8 group">
-              <Image
-                src="/embroidered-velcro-patches-on-uniform--removable-p.jpg"
-                alt="Patchs velcro brodés"
-                width={500}
-                height={300}
-                className="rounded-2xl mb-6 w-full"
-              />
-              <h3 className="text-2xl font-serif font-bold mb-3">Patchs Velcro Brodés</h3>
-              <p className="text-gray-600 mb-4">
-                Patchs amovibles avec velcro, parfaits pour uniformes tactiques, BTP, sécurité. Faciles à retirer pour
-                lavage.
-              </p>
-              <span className="text-[#e91e63] font-semibold group-hover:underline">Voir détails →</span>
-            </Link>
-
-            <Link href="/casquette-bonnet-brode" className="glass-card p-8 group">
-              <Image
-                src="/embroidered-caps-and-beanies-with-company-logos--p.jpg"
-                alt="Casquettes bonnets brodés"
-                width={500}
-                height={300}
-                className="rounded-2xl mb-6 w-full"
-              />
-              <h3 className="text-2xl font-serif font-bold mb-3">Casquettes & Bonnets Brodés</h3>
-              <p className="text-gray-600 mb-4">
-                Couvre-chefs personnalisés pour entreprises, clubs sportifs, événements. Broderie 3D ou classique.
-              </p>
-              <span className="text-[#e91e63] font-semibold group-hover:underline">Voir détails →</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Process Timeline */}
-      <section className="py-20 px-4 bg-gradient-to-b from-white to-pink-50/50">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Notre Processus Professionnel</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              De votre demande à la livraison en 4 étapes simples
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              {
-                num: "01",
-                title: "Consultation & Logo",
-                desc: "Envoyez votre logo. Réponse et conseil sous 24h.",
-              },
-              {
-                num: "02",
-                title: "Mockup & Devis",
-                desc: "Aperçu réaliste + devis détaillé. Validation ensemble.",
-              },
-              {
-                num: "03",
-                title: "Production",
-                desc: "Broderie de qualité, contrôle à chaque étape.",
-              },
-              {
-                num: "04",
-                title: "Livraison Suivie",
-                desc: "Envoi sécurisé 10-14 jours. Tracking fourni.",
-              },
-            ].map((step) => (
-              <div key={step.num} className="glass-card p-6 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#e91e63] to-[#c2185b] text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                  {step.num}
-                </div>
-                <h3 className="text-lg font-serif font-bold mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-600">{step.desc}</p>
+        {/* Placements Section */}
+        <section className="py-20 bg-secondary/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12 animate-fade-in-up">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Placement du logo & options populaires
+              </h2>
+              <p className="text-lg text-muted-foreground">Pour un rendu discret ou plus visible.</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-8">
+              {placements.map((placement, index) => (
+                <Card
+                  key={index}
+                  className="glass-card animate-fade-in-up"
+                  style={{ animationDelay: `${index * 0.15}s` }}
+                >
+                  <CardHeader>
+                    <CardTitle>{placement.title}</CardTitle>
+                    <CardDescription>{placement.desc}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+            <div className="text-center space-y-4 animate-fade-in-up" style={{ animationDelay: "0.45s" }}>
+              <div className="max-w-3xl mx-auto glass-panel rounded-lg p-6">
+                <p className="text-sm text-foreground mb-2 font-semibold">Options :</p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>Ajout prénom / fonction (ex : Chef, Sécurité, Staff)</li>
+                  <li>Patch velcro</li>
+                  <li>Casquette personnalisée</li>
+                </ul>
               </div>
-            ))}
+              <p className="text-sm text-muted-foreground">
+                Votre logo est optimisé pour un rendu broderie propre et lisible.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Final */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <div className="glass-card p-12 text-center">
-            <h2 className="text-3xl font-serif font-bold mb-4">Prêt à Équiper Votre Équipe?</h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Obtenez un devis personnalisé sous 24h. Service professionnel garanti.
+        {/* Packs Section */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12 animate-fade-in-up">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Packs entreprise (simple et efficace)
+              </h2>
+              <p className="text-lg text-muted-foreground">Pour gagner du temps, on peut partir sur une base claire.</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-8">
+              {packs.map((pack, index) => (
+                <Card
+                  key={index}
+                  className="glass-card border-2 animate-fade-in-up"
+                  style={{ animationDelay: `${index * 0.15}s` }}
+                >
+                  <CardHeader>
+                    <CardTitle className="text-2xl">Pack {pack.name}</CardTitle>
+                    <CardDescription>Idéal : {pack.ideal}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 mb-6">
+                      {pack.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm">
+                          <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link href="/devis">
+                      <Button
+                        variant="outline"
+                        className="w-full border-primary text-primary hover:bg-primary hover:text-white bg-transparent btn-shine"
+                      >
+                        Choisir ce pack
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <p className="text-center text-muted-foreground animate-fade-in-up" style={{ animationDelay: "0.45s" }}>
+              Vous voulez une configuration sur mesure ? On le fait.
             </p>
-            <WhatsAppButton message={whatsappTemplates.entreprise}>Demander un Devis Entreprise</WhatsAppButton>
           </div>
-        </div>
-      </section>
+        </section>
 
+        {/* Process Section */}
+        <section className="py-20 bg-secondary/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12 animate-fade-in-up">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Comment se déroule une commande entreprise ?
+              </h2>
+              <p className="text-lg text-muted-foreground">Simple, carré, efficace.</p>
+            </div>
+            <div className="max-w-3xl mx-auto space-y-4 mb-8">
+              {[
+                "Vous envoyez : logo + quantité + articles",
+                "Je vous réponds avec un devis clair",
+                "Validation + acompte",
+                "Production",
+                "Livraison",
+              ].map((step, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-4 glass-panel rounded-lg p-6 animate-fade-in-up"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
+                    {index + 1}
+                  </div>
+                  <p className="text-foreground">{step}</p>
+                </div>
+              ))}
+            </div>
+            <div className="text-center space-y-2 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+              <p className="text-sm text-muted-foreground">
+                <span className="font-semibold">Délais :</span> En moyenne : environ 10 jours (selon quantité)
+              </p>
+              <p className="text-sm text-muted-foreground">
+                <span className="font-semibold">Facture :</span> Facture disponible
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Final */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center animate-fade-in-up">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Demandez votre devis en 1 minute</h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                Un formulaire simple → WhatsApp s&apos;ouvre avec votre demande déjà prête.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+                <Link href="/devis">
+                  <Button
+                    size="lg"
+                    className="bg-[#25D366] hover:bg-[#1da851] text-white font-semibold px-8 shadow-lg btn-shine transition-all hover:scale-105"
+                  >
+                    Demander un devis entreprise (WhatsApp)
+                  </Button>
+                </Link>
+                <a href="tel:+33629492213">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary hover:text-white bg-transparent transition-all hover:scale-105"
+                  >
+                    Appeler : 06 29 49 22 13
+                  </Button>
+                </a>
+              </div>
+              <p className="text-sm text-muted-foreground">Logo + article + quantité + délai = devis rapide.</p>
+            </div>
+          </div>
+        </section>
+      </main>
       <Footer />
-    </main>
+    </>
   )
 }

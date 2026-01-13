@@ -1,254 +1,207 @@
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import WhatsAppButton from "@/components/whatsapp-button"
-import { whatsappTemplates } from "@/lib/contact-data"
-import { Baby, Gift, Heart, Sparkles } from "lucide-react"
+import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/footer"
+import { Heart, Gift, Baby, Sparkles, MessageCircle, CheckCircle } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
 
 export const metadata = {
-  title: "Broderie Personnalisée pour Particuliers | By Sandrine Couture",
+  title: "Broderie personnalisée : prénom, bébé, cadeaux | By Sandrine Couture",
   description:
-    "Cadeaux brodés personnalisés: naissance, anniversaire, mariage. Peignoirs, serviettes, sacs brodés avec prénom. Robertot, Normandie.",
+    "Broderie personnalisée pour particuliers : prénom, message, motif, naissance/bébé. Serviettes, peignoirs, vêtements, accessoires. Devis WhatsApp rapide, livraison possible. Robertot (76560).",
 }
 
 export default function ParticuliersPage() {
+  const occasions = [
+    { icon: Baby, title: "Naissance & bébé", description: "Doudou, gigoteuse, body, cape de bain..." },
+    { icon: Gift, title: "Cadeaux & anniversaires", description: "Prénom, message personnalisé, motif unique" },
+    { icon: Heart, title: "Mariage & couples", description: "Peignoirs, serviettes, housses..." },
+    { icon: Sparkles, title: "Événements", description: "EVJF, enterrements de vie, fêtes..." },
+  ]
+
+  const products = [
+    {
+      title: "Serviettes & peignoirs",
+      image: "/images/serviette-brodee-prenom.jpg",
+      description: "Prénom brodé élégant sur serviette de bain ou peignoir moelleux",
+    },
+    {
+      title: "Bébé & naissance",
+      image: "/images/personnalized-baby-blanket-with-embroidered-name.jpg",
+      description: "Gigoteuse, doudou, body personnalisé pour un cadeau unique",
+    },
+    {
+      title: "Vêtements personnalisés",
+      image: "/images/embroidered-sweater-with-custom-text.jpg",
+      description: "Sweat, t-shirt, veste brodé avec votre texte ou motif",
+    },
+    {
+      title: "Accessoires",
+      image: "/images/embroidered-caps-and-hats-with-custom-designs.jpg",
+      description: "Casquettes, sacs, trousses brodés",
+    },
+  ]
+
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1">
-              <div className="inline-block px-4 py-2 bg-pink-100 text-[#e91e63] rounded-full text-sm font-semibold mb-6">
-                Particuliers
-              </div>
-              <h1 className="section-title text-balance">Créez des Cadeaux Uniques et Personnalisés</h1>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Transformez vos moments précieux en souvenirs brodés inoubliables. Naissance, anniversaire, mariage -
-                chaque création est unique.
-              </p>
-
-              <div className="flex flex-wrap gap-4">
-                <WhatsAppButton message={whatsappTemplates.particulier}>Commander sur WhatsApp</WhatsAppButton>
-                <Link href="/realisations" className="btn-secondary">
-                  Voir la Galerie
-                </Link>
-              </div>
-            </div>
-
-            <div className="order-1 md:order-2 relative">
-              <div className="glass-card p-2">
-                <Image
-                  src="/personalized-embroidered-baby-bathrobe-with-name--.jpg"
-                  alt="Broderie personnalisée cadeau"
-                  width={600}
-                  height={500}
-                  className="rounded-2xl w-full"
-                />
-              </div>
-            </div>
-          </div>
+      <section className="relative min-h-[90vh] flex items-center justify-center px-4 overflow-hidden bg-gradient-to-b from-pink-50 to-white">
+        {/* Floating bubbles background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="floating-bubble" style={{ left: "10%", animationDelay: "0s" }} />
+          <div className="floating-bubble" style={{ left: "80%", top: "60%", animationDelay: "2s" }} />
+          <div className="floating-bubble" style={{ left: "50%", top: "30%", animationDelay: "4s" }} />
         </div>
-      </section>
 
-      {/* Catégories Populaires */}
-      <section className="py-20 px-4 bg-gradient-to-b from-pink-50/50 to-white">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Catégories Populaires</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Des créations brodées pour tous vos moments spéciaux
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+          <div className="fade-in-up">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-100 rounded-full text-sm text-pink-900 mb-6">
+              <span>📍 Robertot (76560) • Livraison possible</span>
+            </div>
+
+            <h1 className="text-5xl md:text-7xl font-bold text-black mb-6 leading-tight">
+              Broderie personnalisée : prénoms, cadeaux, bébé
+            </h1>
+
+            <p className="text-2xl text-gray-700 mb-8">Une attention unique, avec une finition nette et durable.</p>
+
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              Naissance, anniversaire, mariage, EVJF… offrez un cadeau unique avec une broderie personnalisée : prénom,
+              message, motif. Travail soigné, détails nets, rendu émouvant.
+            </p>
+
+            <div className="flex flex-wrap gap-4 mb-8">
+              <CheckCircle className="w-5 h-5 text-pink-500" />
+              <span className="text-sm">Devis rapide</span>
+              <CheckCircle className="w-5 h-5 text-pink-500" />
+              <span className="text-sm">Travail soigné</span>
+              <CheckCircle className="w-5 h-5 text-pink-500" />
+              <span className="text-sm">Livraison</span>
+            </div>
+
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="/devis"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-green-500 hover:bg-green-600 text-white rounded-full font-semibold transition-all hover:scale-105"
+              >
+                <MessageCircle className="w-5 h-5" />
+                Demander un devis WhatsApp
+              </a>
+              <a
+                href="/realisations"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white border-2 border-black text-black rounded-full font-semibold hover:bg-black hover:text-white transition-all"
+              >
+                Voir les réalisations
+              </a>
+            </div>
+
+            <p className="text-sm text-gray-500 mt-4">
+              Le formulaire génère un message WhatsApp complet (article + prénom/texte + date).
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="glass-card p-6">
-              <div className="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center mb-4">
-                <Baby className="text-[#e91e63]" size={28} />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-2">Naissance & Bébé</h3>
-              <p className="text-gray-600 mb-4">
-                Peignoirs, gigoteuses, bavoirs brodés avec prénom et date. Cadeaux de naissance mémorables.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li>✓ Prénoms & dates</li>
-                <li>✓ Motifs mignons</li>
-                <li>✓ Textile doux bébé</li>
-              </ul>
-            </div>
-
-            <div className="glass-card p-6">
-              <div className="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center mb-4">
-                <Gift className="text-[#e91e63]" size={28} />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-2">Cadeaux Personnalisés</h3>
-              <p className="text-gray-600 mb-4">
-                Sacs, serviettes, textiles brodés pour anniversaires, fêtes, événements spéciaux.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li>✓ Textes personnalisés</li>
-                <li>✓ Couleurs au choix</li>
-                <li>✓ Délai ~1 semaine</li>
-              </ul>
-            </div>
-
-            <div className="glass-card p-6">
-              <div className="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center mb-4">
-                <Heart className="text-[#e91e63]" size={28} />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-2">Mariage & Couple</h3>
-              <p className="text-gray-600 mb-4">
-                Serviettes monogrammées, peignoirs pour mariés, linge de maison personnalisé.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li>✓ Monogrammes élégants</li>
-                <li>✓ Dates importantes</li>
-                <li>✓ Cadeaux romantiques</li>
-              </ul>
-            </div>
-
-            <div className="glass-card p-6">
-              <div className="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center mb-4">
-                <Sparkles className="text-[#e91e63]" size={28} />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-2">Créations Sur Mesure</h3>
-              <p className="text-gray-600 mb-4">
-                Projets uniques, broderie artistique, patchs custom. Donnez vie à vos idées.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li>✓ Conception unique</li>
-                <li>✓ Techniques variées</li>
-                <li>✓ Accompagnement créatif</li>
-              </ul>
-            </div>
-
-            <div className="glass-card p-6 bg-gradient-to-br from-pink-50 to-white">
-              <div className="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center mb-4">
-                <Gift className="text-[#e91e63]" size={28} />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-2">Cadeaux Entreprise</h3>
-              <p className="text-gray-600 mb-4">Petites séries premium pour cadeaux clients ou événements.</p>
-              <WhatsAppButton message={whatsappTemplates.particulier} className="text-sm px-4 py-2">
-                Me contacter
-              </WhatsAppButton>
-            </div>
+          <div className="relative fade-in-up" style={{ animationDelay: "200ms" }}>
+            <Image
+              src="/images/personalized-baby-blanket-with-embroidered-name.jpg"
+              alt="Broderie personnalisée bébé"
+              width={600}
+              height={600}
+              className="rounded-3xl shadow-2xl"
+            />
           </div>
         </div>
       </section>
 
-      {/* Galerie Inspiration */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Inspirez-vous de Mes Créations</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">Quelques exemples de broderies personnalisées</p>
+      {/* Occasions Section */}
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 fade-in-up">
+            <h2 className="text-5xl font-bold text-black mb-6">Pour quelle occasion ?</h2>
+            <p className="text-xl text-gray-600">Chaque moment mérite une attention particulière.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                img: "embroidered baby bathrobe with teddy bear and name Emma, soft pink, adorable gift",
-                title: "Peignoir Bébé Emma",
-              },
-              {
-                img: "personalized white tote bag with embroidered floral name Marie, elegant feminine design",
-                title: "Sac Personnalisé Marie",
-              },
-              {
-                img: "embroidered wedding towels with monogram initials and date, luxury white linens",
-                title: "Serviettes Mariage",
-              },
-              {
-                img: "custom embroidered baby bib with cute animals and name Lucas, colorful playful design",
-                title: "Bavoir Lucas",
-              },
-              {
-                img: "personalized gym sports bag with embroidered name and motivational text, black modern",
-                title: "Sac Sport Brodé",
-              },
-              {
-                img: "embroidered linen cushion with custom date and romantic quote, beige elegant home decor",
-                title: "Coussin Date Spéciale",
-              },
-            ].map((item, i) => (
-              <div key={i} className="glass-card p-2 group cursor-pointer">
-                <Image
-                  src={`/.jpg?height=300&width=400&query=${item.img}`}
-                  alt={item.title}
-                  width={400}
-                  height={300}
-                  className="rounded-xl w-full mb-3"
-                />
-                <p className="text-center font-medium text-gray-700 px-2">{item.title}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link href="/realisations" className="btn-secondary">
-              Voir Toutes les Réalisations
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Processus Simple */}
-      <section className="py-20 px-4 bg-gradient-to-b from-white to-pink-50/50">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Comment Commander?</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              3 étapes simples pour votre broderie personnalisée
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                num: "01",
-                title: "Choisissez & Décrivez",
-                desc: "Article, personnalisation souhaitée, couleurs. Contactez-moi sur WhatsApp.",
-              },
-              {
-                num: "02",
-                title: "Recevez Votre Devis",
-                desc: "Aperçu et prix sous 24h. On valide ensemble les détails.",
-              },
-              {
-                num: "03",
-                title: "Recevez Votre Création",
-                desc: "Broderie réalisée avec soin. Livraison en ~7 jours.",
-              },
-            ].map((step) => (
-              <div key={step.num} className="glass-card p-6 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#e91e63] to-[#c2185b] text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                  {step.num}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {occasions.map((occasion, index) => (
+              <div
+                key={index}
+                className="fade-in-up glass p-8 rounded-3xl text-center hover:scale-105 transition-transform duration-300"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-pink-100 flex items-center justify-center">
+                  <occasion.icon className="w-8 h-8 text-pink-600" />
                 </div>
-                <h3 className="text-lg font-serif font-bold mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-600">{step.desc}</p>
+                <h3 className="text-xl font-bold text-black mb-3">{occasion.title}</h3>
+                <p className="text-gray-600 text-sm">{occasion.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section className="py-20 px-4 bg-gradient-to-b from-white to-pink-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 fade-in-up">
+            <h2 className="text-5xl font-bold text-black mb-6">Broderies populaires</h2>
+            <p className="text-xl text-gray-600">Textiles et accessoires personnalisables</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {products.map((product, index) => (
+              <div
+                key={index}
+                className="fade-in-up glass rounded-3xl overflow-hidden hover:scale-105 transition-transform duration-300"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                <div className="relative h-64">
+                  <Image src={product.image || "/placeholder.svg"} alt={product.title} fill className="object-cover" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-black mb-3">{product.title}</h3>
+                  <p className="text-gray-600">{product.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center bg-white/60 backdrop-blur-sm rounded-2xl p-6 max-w-3xl mx-auto border border-pink-200">
+            <p className="text-gray-700">
+              <strong>Note pro :</strong> Je peux personnaliser vos propres textiles ou vous proposer une sélection
+              qualité selon votre budget et l'occasion.
+            </p>
           </div>
         </div>
       </section>
 
       {/* CTA Final */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <div className="glass-card p-12 text-center">
-            <h2 className="text-3xl font-serif font-bold mb-4">Prêt à Créer Votre Cadeau Unique?</h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Racontez-moi votre projet, je vous accompagne pour créer la broderie parfaite.
-            </p>
-            <WhatsAppButton message={whatsappTemplates.particulier}>Commander sur WhatsApp</WhatsAppButton>
+      <section className="py-20 px-4 bg-black text-white">
+        <div className="max-w-4xl mx-auto text-center fade-in-up">
+          <h2 className="text-5xl font-bold mb-6">Demandez votre devis en 1 minute</h2>
+          <p className="text-xl text-gray-300 mb-12">
+            Un formulaire simple → WhatsApp s'ouvre avec votre demande déjà prête.
+          </p>
+
+          <div className="flex flex-wrap gap-4 justify-center">
+            <a
+              href="/devis"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-green-500 hover:bg-green-600 text-white rounded-full font-semibold transition-all hover:scale-105"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Demander un devis particulier (WhatsApp)
+            </a>
+            <a
+              href="tel:+33629492213"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-gray-100 transition-all"
+            >
+              Appeler : 06 29 49 22 13
+            </a>
           </div>
+
+          <p className="text-sm text-gray-400 mt-6">Article + prénom/texte + date = devis rapide.</p>
         </div>
       </section>
 
       <Footer />
-    </main>
+    </div>
   )
 }

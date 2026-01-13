@@ -3,45 +3,52 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Updated color palette to Rose/Blanc/Noir theme for Sandrine Couture */
 :root {
-  /* Palette rose, blanc, noir inspirée du template Maya */
-  --primary-pink: #e91e63;
-  --light-pink: #fce4ec;
-  --medium-pink: #f48fb1;
-  --dark-pink: #c2185b;
-  --rose-gold: #d4a5a5;
-
-  --pure-white: #ffffff;
-  --off-white: #fafafa;
-  --pure-black: #000000;
-  --soft-black: #1a1a1a;
-  --gray: #6b6b6b;
-
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
+  /* Rose/Blanc/Noir palette */
+  --background: oklch(1 0 0); /* Blanc pur */
+  --foreground: oklch(0.145 0 0); /* Noir profond */
+  --card: oklch(1 0 0); /* Blanc */
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+
+  /* Rose principal #E91E63 */
+  --primary: oklch(0.58 0.22 350);
+  --primary-foreground: oklch(1 0 0);
+
+  /* Rose clair pour backgrounds */
+  --secondary: oklch(0.97 0.02 350);
+  --secondary-foreground: oklch(0.145 0 0);
+
+  --muted: oklch(0.96 0.01 350);
+  --muted-foreground: oklch(0.5 0 0);
+
+  /* Rose accent */
+  --accent: oklch(0.72 0.18 350);
+  --accent-foreground: oklch(1 0 0);
+
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 1.5rem; /* Grandes bordures arrondies style Maya */
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.92 0.01 350);
+  --input: oklch(0.92 0.01 350);
+  --ring: oklch(0.58 0.22 350);
+
+  --chart-1: oklch(0.58 0.22 350);
+  --chart-2: oklch(0.72 0.18 350);
+  --chart-3: oklch(0.85 0.1 350);
+  --chart-4: oklch(0.4 0 0);
+  --chart-5: oklch(0.6 0 0);
+
+  --radius: 1rem;
+
+  /* Custom colors */
+  --rose-primary: oklch(0.58 0.22 350);
+  --rose-light: oklch(0.97 0.02 350);
+  --noir: oklch(0.145 0 0);
+  --blanc: oklch(1 0 0);
+  --whatsapp: oklch(0.64 0.17 152); /* #25D366 */
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -88,8 +95,7 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-poppins), "Poppins", sans-serif;
-  --font-serif: var(--font-playfair), "Playfair Display", serif;
+  --font-sans: "Poppins", "system-ui", "sans-serif";
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -114,12 +120,10 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --radius-sm: 1rem;
-  --radius-md: 1.25rem;
-  --radius-lg: 1.5rem;
-  --radius-xl: 2rem;
-  --radius-2xl: 2.5rem;
-  --radius-3xl: 3rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -139,14 +143,36 @@
   }
 }
 
-/* Style glassmorphisme inspiré du template Maya */
+/* Custom utility classes */
+.text-rose {
+  color: var(--rose-primary);
+}
+
+.bg-rose {
+  background-color: var(--rose-primary);
+}
+
+.bg-rose-light {
+  background-color: var(--rose-light);
+}
+
+.border-rose {
+  border-color: var(--rose-primary);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Adding all Maya template animations: glass morphism, floating bubbles, smooth transitions */
+
+/* Glass panel effects from Maya template */
 .glass-panel {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(233, 30, 99, 0.15);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-  border-radius: 1.5rem;
 }
 
 .glass-card {
@@ -154,8 +180,7 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(233, 30, 99, 0.2);
-  box-shadow: 0 4px 24px 0 rgba(233, 30, 99, 0.08);
-  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.08);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -166,117 +191,7 @@
   box-shadow: 0 12px 40px 0 rgba(233, 30, 99, 0.15);
 }
 
-/* Logo circulaire style Maya */
-.logo-circle {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px;
-  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.2);
-  transition: all 0.3s ease;
-  border: 2px solid rgba(233, 30, 99, 0.1);
-}
-
-.logo-circle:hover {
-  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.3);
-  transform: translateY(-2px) scale(1.05);
-}
-
-/* Boutons avec bordures arrondies importantes */
-.btn-glow {
-  box-shadow: 0 0 20px rgba(233, 30, 99, 0.4);
-  transition: all 0.3s ease;
-  border-radius: 9999px;
-}
-
-.btn-glow:hover {
-  box-shadow: 0 0 30px rgba(233, 30, 99, 0.6);
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
-  color: white;
-  padding: 1rem 2.5rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 6px 25px rgba(233, 30, 99, 0.4);
-}
-
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.9);
-  color: #e91e63;
-  border: 2px solid #e91e63;
-  padding: 1rem 2.5rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.btn-secondary:hover {
-  background: #e91e63;
-  color: white;
-  transform: translateY(-2px) scale(1.05);
-}
-
-.whatsapp-button {
-  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-  color: white;
-  padding: 1rem 2.5rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-}
-
-.whatsapp-button:hover {
-  transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
-}
-
-/* Effets de texte style Maya */
-.text-glow {
-  text-shadow: 0 0 30px rgba(233, 30, 99, 0.2);
-}
-
-.section-title {
-  font-family: var(--font-serif);
-  font-size: 3rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 2rem;
-  }
-
-  .logo-circle {
-    width: 56px;
-    height: 56px;
-  }
-}
-
-/* Bulles flottantes style Maya */
+/* Floating bubble animations */
 .floating-bubble {
   position: absolute;
   background: radial-gradient(circle, rgba(233, 30, 99, 0.15), transparent);
@@ -301,12 +216,108 @@
   }
 }
 
-html {
-  scroll-behavior: smooth;
+/* Fade in up animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Fond mystique avec gradient subtil */
-body {
-  background: linear-gradient(135deg, #ffffff 0%, #fce4ec 50%, #ffffff 100%);
-  min-height: 100vh;
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Shine effect for buttons */
+@keyframes shine {
+  0% {
+    left: -100px;
+  }
+  60% {
+    left: 100%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0) 70%
+  );
+  top: 0;
+  left: -100px;
+  opacity: 0.6;
+}
+
+.btn-shine:hover::before {
+  animation: shine 1.5s ease-out infinite;
+}
+
+/* Service card enhanced */
+.service-card-enhanced {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(254, 242, 246, 0.95) 100%);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(233, 30, 99, 0.15);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(233, 30, 99, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card-enhanced::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(233, 30, 99, 0.1), transparent);
+  transition: left 0.7s ease;
+}
+
+.service-card-enhanced:hover::before {
+  left: 100%;
+}
+
+.service-card-enhanced:hover {
+  transform: translateY(-12px);
+  border-color: rgba(233, 30, 99, 0.4);
+  box-shadow: 0 20px 60px rgba(233, 30, 99, 0.2);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fef2f6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e91e63;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c2185b;
 }
