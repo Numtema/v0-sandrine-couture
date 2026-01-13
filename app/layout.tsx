@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { Playfair_Display, Poppins } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import Navbar from "@/components/navbar"
+import Footer from "@/components/footer"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -39,7 +41,9 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${playfair.variable} ${poppins.variable}`}>
       <body className="font-sans antialiased">
-        {children}
+        <Navbar />
+        <main className="pt-24">{children}</main>
+        <Footer />
         <Analytics />
       </body>
     </html>

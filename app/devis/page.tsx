@@ -1,16 +1,55 @@
+"use client"
+
+import { useState } from "react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import WhatsAppButton from "@/components/whatsapp-button"
-import { whatsappTemplates } from "@/lib/contact-data"
+import DevisEntrepriseForm from "@/components/devis-entreprise-form"
+import DevisParticulierForm from "@/components/devis-particulier-form"
 import { Building2, Heart } from "lucide-react"
 
-export const metadata = {
-  title: "Demander un Devis | By Sandrine Couture",
-  description:
-    "Obtenez un devis gratuit sous 24h pour vos projets de broderie. Entreprises ou particuliers, contactez-nous sur WhatsApp.",
-}
-
 export default function DevisPage() {
+  const [selectedType, setSelectedType] = useState<"entreprise" | "particulier" | null>(null)
+
+  if (selectedType === "entreprise") {
+    return (
+      <main className="min-h-screen">
+        <Navbar />
+        <section className="pt-32 pb-20 px-4">
+          <div className="container mx-auto max-w-3xl">
+            <button
+              onClick={() => setSelectedType(null)}
+              className="text-[#e91e63] hover:underline mb-6 flex items-center gap-2"
+            >
+              ← Retour aux options
+            </button>
+            <DevisEntrepriseForm />
+          </div>
+        </section>
+        <Footer />
+      </main>
+    )
+  }
+
+  if (selectedType === "particulier") {
+    return (
+      <main className="min-h-screen">
+        <Navbar />
+        <section className="pt-32 pb-20 px-4">
+          <div className="container mx-auto max-w-3xl">
+            <button
+              onClick={() => setSelectedType(null)}
+              className="text-[#e91e63] hover:underline mb-6 flex items-center gap-2"
+            >
+              ← Retour aux options
+            </button>
+            <DevisParticulierForm />
+          </div>
+        </section>
+        <Footer />
+      </main>
+    )
+  }
+
   return (
     <main className="min-h-screen">
       <Navbar />
@@ -20,12 +59,15 @@ export default function DevisPage() {
           <div className="text-center mb-16">
             <h1 className="section-title">Demander un Devis</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Réponse garantie sous 24h. Choisissez votre type de projet pour un devis personnalisé.
+              Réponse garantie sous 24h. Choisissez votre type de projet pour remplir le formulaire.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="glass-card p-8">
+            <button
+              onClick={() => setSelectedType("entreprise")}
+              className="glass-card p-8 text-left hover:shadow-xl transition-all"
+            >
               <div className="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center mb-6 mx-auto">
                 <Building2 className="text-[#e91e63]" size={32} />
               </div>
@@ -53,12 +95,15 @@ export default function DevisPage() {
                 </li>
               </ul>
 
-              <WhatsAppButton message={whatsappTemplates.entreprise} className="w-full justify-center">
-                Devis Entreprise
-              </WhatsAppButton>
-            </div>
+              <div className="w-full py-3 px-6 bg-[#e91e63] text-white rounded-full font-semibold text-center hover:bg-[#c2185b] transition-colors">
+                Remplir le Formulaire
+              </div>
+            </button>
 
-            <div className="glass-card p-8">
+            <button
+              onClick={() => setSelectedType("particulier")}
+              className="glass-card p-8 text-left hover:shadow-xl transition-all"
+            >
               <div className="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center mb-6 mx-auto">
                 <Heart className="text-[#e91e63]" size={32} />
               </div>
@@ -86,10 +131,10 @@ export default function DevisPage() {
                 </li>
               </ul>
 
-              <WhatsAppButton message={whatsappTemplates.particulier} className="w-full justify-center">
-                Devis Particulier
-              </WhatsAppButton>
-            </div>
+              <div className="w-full py-3 px-6 bg-[#e91e63] text-white rounded-full font-semibold text-center hover:bg-[#c2185b] transition-colors">
+                Remplir le Formulaire
+              </div>
+            </button>
           </div>
 
           <div className="glass-card p-8 mt-12 text-center">
